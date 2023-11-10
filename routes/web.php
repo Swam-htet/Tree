@@ -20,6 +20,9 @@ Route::get('/', function () {
 });
 
 Route::get('/add-book',[BookController::class,'index']);
+Route::post('/add-book',function () {
+    return view('welcome');
+});
 
 
 Auth::routes();
