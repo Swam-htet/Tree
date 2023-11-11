@@ -19,10 +19,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/add-book',[BookController::class,'index']);
-Route::post('/add-book',function () {
-    return view('welcome');
-});
+
+Route::get('/', [BookController::class, 'index']);
+
+Route::get('/books', [BookController::class, 'index']);
+
+Route::get('/books/add-book', [BookController::class, 'add']);
+
+Route::post('books/add-book', [BookController::class, 'create']);
 
 
 Auth::routes();

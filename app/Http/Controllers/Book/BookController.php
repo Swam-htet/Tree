@@ -5,25 +5,44 @@ namespace App\Http\Controllers\Book;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Book;
-
+use Illuminate\Support\Facades\Validator;
 
 class BookController extends Controller
 {
     //
     public function index()
     {
-        return view("books/add-book");
+        $data = Book::all();
+
+        return view('books.index', [
+            'books' => $data
+        ]);
     }
 
-    public function add(Request $request)
+    public function add()
     {
+        return view('books.add-book');
+    }
+
+    public function create()
+    {
+        $validator = Validator(request()->all(), [
+            'title' => 'required',
+            'page' => 'required',
+            'link' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator);
+        }
+
+
         $newBook = new Book();
-        $newBook->title = "Testing Book";
-        $newBook->page  = 1;
-        $newBook->download_link = "www.YouTube.com";
-        // $newBook->released_date = date("Y-m-d H:i:s");
+        $newBook->title = request()->title;
+        $newBook->page = request()->page;
+        $newBook->download_link = request()->link;
         $newBook->save();
-        redirect("/");
+
+        return redirect('/books')->with('info', 'Book Added');
     }
 }
-

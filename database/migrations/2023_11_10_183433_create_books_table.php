@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('title');
             $table->integer('page');
             $table->string('download_link');
-            $table->date('released_date');
             $table->timestamps();
         });
     }
