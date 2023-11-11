@@ -36,7 +36,6 @@ class BookController extends Controller
             return back()->withErrors($validator);
         }
 
-
         $newBook = new Book();
         $newBook->title = request()->title;
         $newBook->page = request()->page;
@@ -44,5 +43,11 @@ class BookController extends Controller
         $newBook->save();
 
         return redirect('/books')->with('info', 'Book Added');
+    }
+
+    public function detail($id)
+    {
+        $data = Book::find($id);
+        return view('books.detail', ['books' => $data]);
     }
 }
