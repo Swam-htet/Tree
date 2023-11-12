@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <div class="container-md-fluid container">
+    <div class="container">
 
         {{--        alert box message for session information       --}}
         @if (session('info'))

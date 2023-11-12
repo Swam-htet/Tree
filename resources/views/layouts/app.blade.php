@@ -77,12 +77,11 @@
         </div>
     </nav>
 
-    <main class="py-4">
+    <main class="py-4 min-vh-100">
         @yield('content')
     </main>
 
-    <<<<<<< HEAD
-    <footer class="bg-dark text-white text-center text-lg-start">
+    <footer class="bg-light shadow text-dark text-center text-lg-start">
         <!-- Grid container -->
         <div class="container p-4">
             <!--Grid row-->
@@ -169,12 +168,6 @@
         <!-- Grid container -->
 
     </footer>
-
-    =======
-    <footer>
-
-    </footer>
-    >>>>>>> develop
 
 </div>
 </body>
