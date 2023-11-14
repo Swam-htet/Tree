@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Book extends Model
 {
     use HasFactory;
+
+
+    public function genre()
+    {
+        //-----------------------One books have one genre:------------------------
+        return $this->belongsTo('App\Models\Genre');
+    }
 }
