@@ -33,6 +33,9 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
+                        <a href="{{ url('/books') }}" class="nav-link">Books</a>
+                    </li>
+                    <li class="nav-item">
                         <a href="{{ url('/books/add-book') }}" class="nav-link text-success">Add Book</a>
                     </li>
                 </ul>
