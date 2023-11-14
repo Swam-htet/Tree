@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Genre;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,11 +15,34 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        // Insert into the genre type
+        $genre_name =
+        [
+            "Classics",
+            "Historical",
+            "Romance",
+            "Thriller",
+            "Horror",
+            "Fantasy",
+            "Comedy",
+            "Law",
+            "Supernatural",
+            "Politics",
+            "Sci-Fi",
+            "Technology",
+            "Travel",
+            "Drama",
+            "Business & Investing",
+            "Food",
+            "Art", "Biography",
+            "Crime & Mystery",
+            "Action",
+            "Adventure",
+            "Motivation"
+        ];
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        foreach ($genre_name as $name) {
+            Genre::create(["name" => $name]);
+        }
     }
 }
