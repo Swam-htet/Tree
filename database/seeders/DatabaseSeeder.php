@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Genre;
+use App\Models\Book;
 
 class DatabaseSeeder extends Seeder
 {
@@ -34,7 +35,8 @@ class DatabaseSeeder extends Seeder
             "Drama",
             "Business & Investing",
             "Food",
-            "Art", "Biography",
+            "Art",
+            "Biography",
             "Crime & Mystery",
             "Action",
             "Adventure",
@@ -44,5 +46,7 @@ class DatabaseSeeder extends Seeder
         foreach ($genre_name as $name) {
             Genre::create(["name" => $name]);
         }
+
+        Book::factory()->count(20)->create();
     }
 }
