@@ -17,8 +17,15 @@ return new class extends Migration
         Schema::create('books', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->longText('description');
+            // $table->string('thumbnail');
+            // ❗❗❗ here u can off above comment when u finished adding img upload function
+            $table->string('publisher');
+            $table->date('release_date'); //📆📅 Date format YYYY-MM-DD
             $table->integer('page');
+            $table->string('rating');
             $table->string('download_link');
+            $table->integer('genre_id');
             $table->timestamps();
         });
     }

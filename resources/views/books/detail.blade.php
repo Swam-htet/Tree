@@ -17,20 +17,21 @@
                         <p class="card-text"><b> Author Name:</b> BoBo,
                             <b>Page Number:</b> {{ $books->page }}
                             <br>
-                            <b>Date: </b> {{ $books['created_at'] }}
+                            <b>Date: </b> {{ $books->release_date}}
                         </p>
                         <h2 class="card-text mt-4">
                             Description
                         </h2>
-                        <p class="card-text">
-                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Incidunt deserunt
-                            mollitia qui numquam alias reprehenderit similique consequatur architecto, perferendis enim!
-                            Quisquam numquam magnam nemo aliquid quas error incidunt nulla totam eius blanditiis debitis
-                            consectetur placeat asperiores veritatis mollitia, adipisci facere?</p>
+                        <p class="card-text">{{$books->description}}</p>
                         <h5 class="card-text mt-4">
                             Rating ⭐⭐⭐⭐
                         </h5>
+                        <p class="card-text">Downloak Here:
+                            <a href="#"> {{$books->download_link}} </a>
+                            {{-- ⭕need to change above url to dynamically --}}
+                        </p>
                     </div>
+
                 </div>
             </div>
         </div>
