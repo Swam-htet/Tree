@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Book\BookController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ReviewController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -17,6 +18,10 @@ Route::get('/books/add-book', [BookController::class, 'add']);
 Route::post('books/add-book', [BookController::class, 'create']);
 
 Route::get('/books/detail/{id}', [BookController::class, 'detail']);
+
+Route::post('reviews/add', [ReviewController::class,'create']);
+Route::get('reviews/delete/{id}', [ReviewController::class,'delete']);
+
 
 Route::get('/books/search', [BookController::class, 'detail']);
 Route::get('/books/az-list/{searchParams}', [BookController::class, 'search']);

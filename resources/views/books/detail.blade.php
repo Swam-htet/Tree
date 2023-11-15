@@ -17,17 +17,17 @@
                         <p class="card-text"><b> Author Name:</b> BoBo,
                             <b>Page Number:</b> {{ $books->page }}
                             <br>
-                            <b>Date: </b> {{ $books->release_date}}
+                            <b>Date: </b> {{ $books->release_date }}
                         </p>
                         <h2 class="card-text mt-4">
                             Description
                         </h2>
-                        <p class="card-text">{{$books->description}}</p>
+                        <p class="card-text">{{ $books->description }}</p>
                         <h5 class="card-text mt-4">
                             Rating ⭐⭐⭐⭐
                         </h5>
                         <p class="card-text">Downloak Here:
-                            <a href="#"> {{$books->download_link}} </a>
+                            <a href="#"> {{ $books->download_link }} </a>
                             {{-- ⭕need to change above url to dynamically --}}
                         </p>
                     </div>
@@ -41,40 +41,27 @@
                 Leave a review
             </li>
         </ul>
-        <li class="list-group-item mt-4">
-            <a href="#" class="btn-close float-end"></a>
-            {{-- <img src="" alt=""> --}}
-            {{-- 🔝apw ka img mhr user pone awine ly nae hr asin pyay tat lu htea py🐗 --}}
-            <b class="text-success">
-                Bobo
-            </b>
-            <br> <small class="text-muted">
-                Date:12:00
-            </small>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum error provident similique, consequuntur
-                exercitationem accusamus sit doloremque excepturi commodi cupiditate adipisci, odit, delectus cumque nemo?
-            </p>
-        </li>
 
         <li class="list-group-item mt-4">
-            <a href="#" class="btn-close float-end"></a>
-            {{-- <img src="" alt=""> --}}
-            <b class="text-success">
-                Bobo
-            </b>
-            <br> <small class="text-muted">
-                Date:12:00
-            </small>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum error provident similique, consequuntur
-                exercitationem accusamus sit doloremque excepturi commodi cupiditate adipisci, odit, delectus cumque nemo?
-            </p>
+            @foreach ($books->reviews as $review)
+                <a href="{{ url("reviews/delete/$review->id") }}" class="btn-close float-end"></a>
+                <b class="text-success">
+                    Bobo
+                </b>,
+                <small class="text-muted">
+                    {{ $review->created_at->diffForHumans() }}
+                </small>
+                <p class="card-text">
+                    {{ $review->review_feedback }}
+                </p>
+                <hr>
+            @endforeach
         </li>
-        <hr>
-        <form action="#" method="post" class="mt-2">
+        <form action="{{ url('reviews/add') }}" method="POST" class="mt-2">
             @csrf
-            <textarea name="content" class="form-control mb-2"></textarea>
+            <input type="hidden" name="book_id" value="{{ $books->id }}">
+
+            <textarea name="review_feedback" class="form-control mb-2" placeholder="Enter review here"></textarea>
             <button class="btn btn-info">Add Review</button>
         </form>
     </div>

@@ -15,4 +15,10 @@ class Book extends Model
         //-----------------------One books have one genre:------------------------
         return $this->belongsTo('App\Models\Genre');
     }
+
+    public function reviews()
+    {
+        return $this->hasMany('App\Models\Review');
+    }
+
 }
