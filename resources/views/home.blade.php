@@ -1,21 +1,32 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container text-center w-70 w-md-50" style="margin-top: 150px">
+    <div class="container" style="margin-top: 15%">
 
         <div class="d-flex w-100 justify-content-center align-content-center">
-            <div class="d-block me-2"  style="margin-top: 8px">
+            <div class="d-block me-2" style="margin-top: 9px">
                 <i class="fa-solid fa-tree fa-2xl"></i>
             </div>
             <h1 class="d-block">Tree</h1>
         </div>
-        <div class="input-group my-3">
-            <input class="form-control" type="text" placeholder="Enter Book Name...">
-            <button class="btn btn-secondary">
-                <i class="fa-solid fa-magnifying-glass"></i>
-            </button>
+
+        <form method="get" action="{{url('/books')}}">
+            <div class="d-flex">
+                <div class="col-12 col-md-5" style="margin:0 auto">
+                    <div class="input-group w-100">
+                        <input class="form-control" name="keyword" type="text" placeholder="Search here...">
+                        <button class="btn btn-secondary" type="submit">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+
+        <div class="text-center mt-3">
+            <p>Tree.com - Just a better place to learn new things for free</p>
         </div>
-        <p>Tree.com - Just a better place to learn new things for free</p>
 
     </div>
 @endsection
