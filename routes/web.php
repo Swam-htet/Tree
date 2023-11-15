@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Book\BookController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
@@ -24,8 +25,10 @@ Route::get('/books/az-list/{searchParams}', [BookController::class, 'search']);
 Route::get('/books/search?keyword={searchParams}', [BookController::class, 'search']);
 
 
+Route::post('reviews/add', [ReviewController::class,'create']);
+Route::get('reviews/delete/{id}', [ReviewController::class,'delete']);
+
+
 Route::get('/profile', [UserController::class, 'index']);
-
-
 
 Auth::routes();
