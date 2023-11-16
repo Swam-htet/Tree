@@ -20,7 +20,6 @@ class ReviewController extends Controller
     {
         $review = Review::find($id);
         $review->delete();
-        return back();  
+        return back()->with('info', 'Review Deleted');
     }
-
 }

@@ -7,8 +7,9 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function index()
+    public function profile(Request $request)
     {
-        return view('users.profile');
+        $user = auth()->user();
+        return view('users.profile', compact('user'));
     }
 }

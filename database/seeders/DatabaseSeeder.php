@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 use App\Models\Genre;
 use App\Models\Book;
 use App\Models\Review;
+use App\Models\User;
 
 class DatabaseSeeder extends Seeder
 {
@@ -19,30 +20,30 @@ class DatabaseSeeder extends Seeder
     {
         // Insert into the genre type
         $genre_name =
-        [
-            "Classics",
-            "Historical",
-            "Romance",
-            "Thriller",
-            "Horror",
-            "Fantasy",
-            "Comedy",
-            "Law",
-            "Supernatural",
-            "Politics",
-            "Sci-Fi",
-            "Technology",
-            "Travel",
-            "Drama",
-            "Business & Investing",
-            "Food",
-            "Art",
-            "Biography",
-            "Crime & Mystery",
-            "Action",
-            "Adventure",
-            "Motivation"
-        ];
+            [
+                "Classics",
+                "Historical",
+                "Romance",
+                "Thriller",
+                "Horror",
+                "Fantasy",
+                "Comedy",
+                "Law",
+                "Supernatural",
+                "Politics",
+                "Sci-Fi",
+                "Technology",
+                "Travel",
+                "Drama",
+                "Business & Investing",
+                "Food",
+                "Art",
+                "Biography",
+                "Crime & Mystery",
+                "Action",
+                "Adventure",
+                "Motivation"
+            ];
 
         foreach ($genre_name as $name) {
             Genre::create(["name" => $name]);
@@ -50,5 +51,22 @@ class DatabaseSeeder extends Seeder
 
         Book::factory()->count(20)->create();
         Review::factory()->count(20)->create();
+
+        User::factory()->create([
+            "name" => "Pyae Bhone",
+            "email" => "pbz@gmail.com",
+        ]);
+        User::factory()->create([
+            "name" => "Swam Htet",
+            "email" => "sh@gmail.com",
+        ]);
+        User::factory()->create([
+            "name" => "Aung Pyae Phyo",
+            "email" => "app@gmail.com",
+        ]);
+        User::factory()->create([
+            "name" => "Min Khant Maung",
+            "email" => "mkm@gmail.com",
+        ]);
     }
 }
