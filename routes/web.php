@@ -1,38 +1,32 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Book\BookController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ReviewController;
+use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'index']);
+Route::get('/home', [HomeController::class, 'index']);
+Route::get('/about', [HomeController::class, 'about']);
+Route::get('/content', [HomeController::class, 'content']);
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
-// Route::get('/', [BookController::class, 'index']);
 
 Route::get('/books', [BookController::class, 'index']);
 
 Route::get('/books/add-book', [BookController::class, 'add']);
-
 Route::post('books/add-book', [BookController::class, 'create']);
 
 Route::get('/books/detail/{id}', [BookController::class, 'detail']);
 
+Route::post('reviews/add', [ReviewController::class,'create']);
+Route::get('reviews/delete/{id}', [ReviewController::class,'delete']);
 
+
+Route::get('/books/search', [BookController::class, 'detail']);
+Route::get('/books/az-list/{searchParams}', [BookController::class, 'search']);
+Route::get('/books/search?keyword={searchParams}', [BookController::class, 'search']);
 
 
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
