@@ -13,7 +13,7 @@ class BookController extends Controller
     //
     public function index()
     {
-        $data = Book::all();
+        $data = Book::latest()->paginate(8);
 
         return view('books.index', [
             'books' => $data
