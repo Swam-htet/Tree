@@ -1,7 +1,22 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
-        <h1>Book Detail Page</h1>
+        {{-- New Added Gay Arrow < --}}
+        <ol class="breadcrumb">
+            <a class="breadcrumb-item active ms-1" href="{{ url('/books') }}"><i
+                    class="fa-solid fa-chevron-left fa-xl"></i></a>
+        </ol>
+        {{-- Get alert when deleted with 2 seconds --}}
+        @if (session('info'))
+            <div class="alert alert-info" id="info">
+                {{ session('info') }}
+            </div>
+            <script>
+                setTimeout(function() {
+                    document.getElementById('info').style.display = 'none';
+                }, 2000);
+            </script>
+        @endif
 
         {{-- UI d mhr sa p chg htr tl 😼🤞 --}}
 
@@ -13,21 +28,31 @@
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
-                        <h3 class="card-text"><b>Book Title:</b> {{ $books->title }} </h3>
-                        <p class="card-text"><b> Author Name:</b> BoBo,
-                            <b>Page Number:</b> {{ $books->page }}
+                        <h2 class="card-text"><b>Title:</b> {{ $books->title }} </h2>
+                        <p class="card-text"><b>By </b> {{ $books->publisher }}
                             <br>
-                            <b>Date: </b> {{ $books->release_date }}
+                            {{ $books->page }}<b> Pages</b>
+                            <br>
+                            <b>Released Date: </b> {{ $books->release_date }}
+
                         </p>
-                        <h2 class="card-text mt-4">
+                        <h5 class="card-text mt-4">
                             Description
-                        </h2>
+                        </h5>
                         <p class="card-text">{{ $books->description }}</p>
                         <h5 class="card-text mt-4">
-                            Rating ⭐⭐⭐⭐
+                            Rating:
+                            {{-- Adjust Bobo APP's Star base on rating input --}}
+                            @for ($i = 1; $i <= 5; $i++)
+                                @if ($i <= $books->rating)
+                                    ⭐
+                                @else
+                                    ✰
+                                @endif
+                            @endfor
                         </h5>
-                        <p class="card-text">Downloak Here:
-                            <a href="#"> {{ $books->download_link }} </a>
+                        <p class="card-text">
+                            <a class="btn btn-outline-success mt-4" href="#" role="button">Download</a>
                             {{-- ⭕need to change above url to dynamically --}}
                         </p>
                     </div>
@@ -36,9 +61,10 @@
             </div>
         </div>
 
+        {{-- Think this would suit --}}
         <ul class="list-group mt-4">
-            <li class="list-group-item list-group-item-primary">
-                Leave a review
+            <li class="list-group-item list-group-item-primary text-center">
+                <h5>Reviews</h5>
             </li>
         </ul>
 
@@ -60,9 +86,9 @@
         <form action="{{ url('reviews/add') }}" method="POST" class="mt-2">
             @csrf
             <input type="hidden" name="book_id" value="{{ $books->id }}">
-
-            <textarea name="review_feedback" class="form-control mb-2" placeholder="Enter review here"></textarea>
-            <button class="btn btn-info">Add Review</button>
+            {{-- Also change placeholder of APP's --}}
+            <textarea name="review_feedback" class="form-control mb-2" placeholder="Leave a review"></textarea>
+            <button class="btn btn-outline-secondary">Add Review</button>
         </form>
     </div>
 @endsection

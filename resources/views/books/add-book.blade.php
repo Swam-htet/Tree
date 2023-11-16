@@ -27,8 +27,9 @@
                 <input type="text" name="publisher" class="form-control">
             </div>
             <div class="mb-3">
-                <label>Rating</label>
-                <input type="text" name="rating" class="form-control">
+                <label for="rating">Rating:</label>
+                {{-- Change the rating input to minimum and maximum --}}
+                <input type="number" name="rating" min="1" max="5" class="form-control" required>
             </div>
 
             <div class="mb-3">
@@ -45,7 +46,7 @@
                 <select class="form-select" name="genre_id">
                     @foreach ($genres as $genre)
                         <option value="{{ $genre['id'] }}">
-                            {{ $genre->name}}
+                            {{ $genre->name }}
                         </option>
                     @endforeach
                 </select>

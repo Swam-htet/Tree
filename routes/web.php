@@ -25,10 +25,11 @@ Route::get('/books/az-list/{searchParams}', [BookController::class, 'search']);
 Route::get('/books/search?keyword={searchParams}', [BookController::class, 'search']);
 
 
-Route::post('reviews/add', [ReviewController::class,'create']);
-Route::get('reviews/delete/{id}', [ReviewController::class,'delete']);
+Route::post('reviews/add', [ReviewController::class, 'create']);
+Route::get('reviews/delete/{id}', [ReviewController::class, 'delete']);
 
 
-Route::get('/profile', [UserController::class, 'index']);
+Route::get('/user', [UserController::class, 'profile'])->name('user.profile');
+
 
 Auth::routes();

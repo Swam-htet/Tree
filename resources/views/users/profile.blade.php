@@ -9,7 +9,7 @@
             <div class="col-md-10">
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="mt-5">
-                        <h2>Name</h2>
+                        <h2>{{ $user->name }}</h2>
                         <p>Email: ....</p>
                         <p class="border border-2 border-success rounded-pill text-center">Writer</p>
                     </div>
