@@ -18,6 +18,7 @@
         <h1>Books List</h1>
 
         <div class="row flex-wrap">
+             {{ $books->links() }}
             @foreach ($books as $book)
                 <div class="col-12 col-md-6 col-xl-3 p-3">
                     <div class="card p-3">
