@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('rating');
             $table->string('download_link');
             $table->integer('genre_id');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }

@@ -19,6 +19,7 @@ class ReviewFactory extends Factory
         return [
             "review_feedback" => $this->faker->paragraph,
             "book_id" => rand(1, 20),
+            "user_id" => rand(1,5),
         ];
     }
 }

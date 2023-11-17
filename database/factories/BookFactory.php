@@ -26,6 +26,7 @@ class BookFactory extends Factory
             'rating' => rand(1, 5),
             'download_link' => 'https://' . $this->faker->word . '-' . $this->faker->word . '.com',
             'genre_id' => rand(1, count(Genre::all())),
+            'user_id' => rand(1,5),
         ];
     }
 }

@@ -8,9 +8,10 @@
             </div>
             <div class="col-md-10">
                 <div class="d-flex justify-content-between align-items-center">
-                    <div class="mt-5">
+                    {{-- margin top ko 5 to 4 chg lk tl gayy toe mt-5 -> mt->4 --}}
+                    <div class="mt-4">
                         <h2>{{ $user->name }}</h2>
-                        <p>Email: ....</p>
+                        <p>{{$user->email}}</p>
                         <p class="border border-2 border-success rounded-pill text-center">Writer</p>
                     </div>
                     <button class="btn btn-outline-dark">Edit Profile</button>

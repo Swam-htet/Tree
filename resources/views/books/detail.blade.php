@@ -6,6 +6,7 @@
             <a class="breadcrumb-item active ms-1" href="{{ url('/books') }}"><i
                     class="fa-solid fa-chevron-left fa-xl"></i></a>
         </ol>
+
         {{-- Get alert when deleted with 2 seconds --}}
         @if (session('info'))
             <div class="alert alert-info" id="info">
@@ -71,9 +72,9 @@
         <li class="list-group-item mt-4">
             @foreach ($books->reviews as $review)
                 <a href="{{ url("reviews/delete/$review->id") }}" class="btn-close float-end"></a>
-                <b class="text-success">
-                    Bobo
-                </b>,
+                <b class="text-successc">
+                    {{$review->user->name}}
+                </b>
                 <small class="text-muted">
                     {{ $review->created_at->diffForHumans() }}
                 </small>

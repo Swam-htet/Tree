@@ -50,6 +50,7 @@ class BookController extends Controller
         $newBook->rating = request()->rating;
         $newBook->genre_id = request()->genre_id;
         $newBook->download_link = request()->link;
+        $newBook->user_id = auth()->user()->id;
         $newBook->save();
         return redirect('/books')->with('info', 'Book Added');
     }
