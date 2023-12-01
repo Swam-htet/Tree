@@ -18,7 +18,7 @@
         <h1>Books List</h1>
 
         <div class="row flex-wrap">
-             {{ $books->links() }}
+            {{ $books->links() }}
             @foreach ($books as $book)
                 <div class="col-12 col-md-6 col-xl-3 p-3">
                     <div class="card p-3">
@@ -26,7 +26,11 @@
                         <div class="card-body">
                             <div class="row flex-wrap">
                                 <div class="col-6 col-md-12">
-                                    <img src="https://images.dog.ceo/breeds/weimaraner/n02092339_363.jpg" class="card-img">
+                                    @if ($book->photo)
+                                    <img src="{{ asset('storage/images/' . basename($book->photo)) }}" alt="Book Photo" width="240px" height="240px">
+                                @else
+                                    <p>No photo available</p>
+                                @endif
                                 </div>
                                 <div class="col-6 col-md-12 mt-lg-2">
                                     <div class="card-title"><b>Title: </b>{{ $book->title }}</div>

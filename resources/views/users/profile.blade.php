@@ -19,7 +19,6 @@
             </div>
         </div>
     </main>
-
     {{-- Information --}}
     <section class="radient-custom-2">
         <div class="container py-5">

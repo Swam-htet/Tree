@@ -18,7 +18,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->longText('description');
-            // $table->string('thumbnail');
+            $table->string('photo');
             // ❗❗❗ here u can off above comment when u finished adding img upload function
             $table->string('publisher');
             $table->date('release_date'); //📆📅 Date format YYYY-MM-DD

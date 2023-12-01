@@ -12,7 +12,7 @@
             </div>
         @endif
 
-        <form method="post">
+        <form method="POST" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
                 <label>Title</label>
@@ -50,6 +50,9 @@
                         </option>
                     @endforeach
                 </select>
+            </div>
+            <div class="mb-3">
+                <input type="file" name="photo">
             </div>
             <div class="mb-3">
                 <label>Download Link</label>

@@ -39,9 +39,11 @@
                         <li class="nav-item">
                             <a href="{{ url('/books') }}" class="nav-link">Books</a>
                         </li>
+                        @auth
                         <li class="nav-item">
                             <a href="{{ url('/books/add-book') }}" class="nav-link text-success">Add Book</a>
                         </li>
+                        @endauth
                     </ul>
 
                     <!-- Right Side Of Navbar -->
