@@ -1,19 +1,23 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
-        {{-- <h1>Search Book Page</h1> --}}
 
+        {{-- Show the message if u find the empty book's name --}}
         <div class="row flex-wrap">
-
+            @if ($books->isEmpty())
+            <div class="col-12">
+                <div class="alert alert-warning" role="alert">
+                    No results found.
+                </div>
+            </div>
+        @else
             @foreach ($books as $book)
                     <div class="col-12 col-md-6 col-xl-3 p-3">
-                        <div class="card p-3">   
+                        <div class="card p-3">
                             <div class="card-body">
                                 <div class="row flex-wrap">
                                     <div class="col-6 col-md-12">
-                                        {{-- <img src="
-                            {{ asset('public/images/' . $book->photo) }}"
-                                            alt="" width="200px" height="200px"> --}}
+                                        <img src="{{ asset('storage/images/' . basename($book->photo)) }}" alt="Book Photo" width="240px" height="240px">
                                     </div>
                                     <div class="col-6 col-md-12 mt-lg-2">
                                         <div class="card-title"><b>Title: </b>{{ $book->title }}</div>
@@ -32,7 +36,6 @@
                                             <small class="text-secondary">
                                                 {{ $book->created_at->diffForHumans() }} </small>
                                             <br>
-
                                         </span>
                                     </div>
                                 </div>
@@ -44,5 +47,6 @@
                         </div>
                     </div>
             @endforeach
+            @endif
         </div>
     @endsection

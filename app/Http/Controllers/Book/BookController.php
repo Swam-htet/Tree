@@ -18,7 +18,6 @@ class BookController extends Controller
 
     public function search(Request $request)
     {
-
         $keyword = $request->keyword;
         $books = Book::WHERE(function ($query) use ($keyword) {
             $query->WHERE('title', 'like', "%$keyword%")
