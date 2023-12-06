@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 
 class Book extends Model
 {
@@ -19,6 +20,11 @@ class Book extends Model
     public function reviews()
     {
         return $this->hasMany('App\Models\Review');
+    }
+
+    public function user()
+    {
+        return $this->hasMany(User::class);
     }
 
 }

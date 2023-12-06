@@ -75,6 +75,7 @@
                 @auth
                 <a href="{{ url("reviews/delete/$review->id") }}" class="btn-close float-end"></a>
                 @endauth
+                 <img src="{{ asset('storage/avatars/' . basename($review->user->avatar)) }}" alt="Avatar" class="img rounded-circle" width="30" height="30">
                 <b class="text-successc">
                     {{$review->user->name}}
                 </b>
