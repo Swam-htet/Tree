@@ -3,7 +3,8 @@
     <main class="container mt-4">
         <div class="row">
             <div class="col-md-2">
-                <img src="https://i.pinimg.com/originals/da/24/e6/da24e61e38cf8b2db08b6d4b6895c11b.png" alt="Profile Image"
+                {{-- <img src="https://i.pinimg.com/originals/da/24/e6/da24e61e38cf8b2db08b6d4b6895c11b.png" alt="Profile Image"> --}}
+                <img src="{{ asset('storage/avatars/' . basename($user->avatar)) }}" alt="Avatar"
                     class="img-fluid rounded-circle" width="200" height="200">
             </div>
             <div class="col-md-10">
@@ -19,7 +20,6 @@
             </div>
         </div>
     </main>
-
     {{-- Information --}}
     <section class="radient-custom-2">
         <div class="container py-5">

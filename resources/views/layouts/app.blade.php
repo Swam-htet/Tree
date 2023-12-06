@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Tree') }}</title>
 
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
@@ -25,7 +25,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    {{ config('app.name', 'Tree') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -39,9 +39,11 @@
                         <li class="nav-item">
                             <a href="{{ url('/books') }}" class="nav-link">Books</a>
                         </li>
-                        <li class="nav-item">
-                            <a href="{{ url('/books/add-book') }}" class="nav-link text-success">Add Book</a>
-                        </li>
+                        @auth
+                            <li class="nav-item">
+                                <a href="{{ url('/books/add-book') }}" class="nav-link text-success">Add Book</a>
+                            </li>
+                        @endauth
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -63,7 +65,12 @@
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link" href="#" role="button"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    <i class="fa-solid fa-circle-user fa-2xl"></i>
+                                    <img src="{{ asset('storage/avatars/' . basename(auth()->user()->avatar)) }}"
+                                        alt="Avatar" class="img rounded-circle" width="30" height="30">
+
+                                    {{-- <img src="https://i.pinimg.com/originals/da/24/e6/da24e61e38cf8b2db08b6d4b6895c11b.png" alt="Profile Image"
+                                            class="img rounded-circle" width="30" height="30"> --}}
+
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">

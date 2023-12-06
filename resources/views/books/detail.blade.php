@@ -24,8 +24,10 @@
         <div class="card mb-3 mt-4" style="max-width:auto;">
             <div class="row g-0">
                 <div class="col-md-4">
-                    <img src="https://images.dog.ceo/breeds/weimaraner/n02092339_363.jpg" class="img-fluid rounded-start"
-                        alt="..." width="450px" height="460px" height="450px">
+                    {{-- Bobo Swan Htet's dogyy photo's link 🐶🐕
+                    "https://images.dog.ceo/breeds/weimaraner/n02092339_363.jpg"  --}}
+                    <img src="{{ asset('storage/images/' . basename($books->photo)) }}" class="img-fluid rounded-start"
+                        alt="Book Photo" width="450px" height="460px" height="450px">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
@@ -35,7 +37,6 @@
                             {{ $books->page }}<b> Pages</b>
                             <br>
                             <b>Released Date: </b> {{ $books->release_date }}
-
                         </p>
                         <h5 class="card-text mt-4">
                             Description
@@ -71,7 +72,10 @@
 
         <li class="list-group-item mt-4">
             @foreach ($books->reviews as $review)
+                @auth
                 <a href="{{ url("reviews/delete/$review->id") }}" class="btn-close float-end"></a>
+                @endauth
+                 <img src="{{ asset('storage/avatars/' . basename($review->user->avatar)) }}" alt="Avatar" class="img rounded-circle" width="30" height="30">
                 <b class="text-successc">
                     {{$review->user->name}}
                 </b>
@@ -84,6 +88,8 @@
                 <hr>
             @endforeach
         </li>
+
+        @auth
         <form action="{{ url('reviews/add') }}" method="POST" class="mt-2">
             @csrf
             <input type="hidden" name="book_id" value="{{ $books->id }}">
@@ -91,5 +97,6 @@
             <textarea name="review_feedback" class="form-control mb-2" placeholder="Leave a review"></textarea>
             <button class="btn btn-outline-secondary">Add Review</button>
         </form>
+        @endauth
     </div>
 @endsection

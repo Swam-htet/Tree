@@ -11,6 +11,21 @@ use Illuminate\Support\Facades\Validator;
 class BookController extends Controller
 {
     //
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['index','home','detail','search']);
+    }
+
+    public function search(Request $request)
+    {
+        $keyword = $request->keyword;
+        $books = Book::WHERE(function ($query) use ($keyword) {
+            $query->WHERE('title', 'like', "%$keyword%")
+                ->orWHERE('title', 'like', "%$keyword%");
+        })->get();
+        return view('books/search', compact('books', 'keyword'));
+    }
+
     public function index()
     {
         $data = Book::latest()->paginate(8);
@@ -28,7 +43,7 @@ class BookController extends Controller
         ]);
     }
 
-    public function create()
+    public function create(Request $request)
     {
         $validator = Validator(request()->all(), [
             'title' => 'required',
@@ -40,17 +55,21 @@ class BookController extends Controller
         if ($validator->fails()) {
             return back()->withErrors($validator);
         }
-
         $newBook = new Book();
         $newBook->title = request()->title;
-        $newBook->description = request()->description;
         $newBook->page = request()->page;
+        $newBook->description = request()->description;
         $newBook->publisher = request()->publisher;
         $newBook->release_date = request()->release_date;
         $newBook->rating = request()->rating;
         $newBook->genre_id = request()->genre_id;
         $newBook->download_link = request()->link;
         $newBook->user_id = auth()->user()->id;
+        if(request()->hasFile('photo')){
+            $originalName=request()->file('photo')->getClientOriginalName();
+            $imgPath=request()->file('photo')->storeAs('public/images',$originalName);
+            $newBook->photo = $imgPath;
+        }
         $newBook->save();
         return redirect('/books')->with('info', 'Book Added');
     }

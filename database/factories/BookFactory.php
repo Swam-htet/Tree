@@ -24,6 +24,7 @@ class BookFactory extends Factory
             'release_date' => $this->faker->date('Y-m-d h:m:s'),
             'page' => rand(100, 200),
             'rating' => rand(1, 5),
+            'photo' => $this->faker->text,
             'download_link' => 'https://' . $this->faker->word . '-' . $this->faker->word . '.com',
             'genre_id' => rand(1, count(Genre::all())),
             'user_id' => rand(1,5),

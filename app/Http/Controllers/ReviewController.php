@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Gate;
+
 
 use Illuminate\Http\Request;
 use App\Models\Review;
@@ -23,8 +25,12 @@ class ReviewController extends Controller
 
     public function delete($id)
     {
-        $review = Review::find($id);
+        $review = review::find($id);
+        if (Gate::denies('review-delete', $review)) {
+            return back()->with('error', 'Unauthorize User');
+        }
         $review->delete();
         return back()->with('info', 'Review Deleted');
+
     }
 }

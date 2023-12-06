@@ -9,7 +9,7 @@
 
                 <div class="card-body" >
 
-                    <form method="POST" action="{{ route('register') }}" >
+                    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data" >
                         @csrf
 
                         <div class="form-floating mb-3">
@@ -50,13 +50,20 @@
                                    name="password_confirmation" required autocomplete="new-password">
                             <label for="floatingPassword">Confirm Password</label>
                         </div>
-
+                        <div class="form-floating mb-3">
+                            <input class="form-control" type="file" name="avatar" value="">
+                            @error('avatar')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                    @enderror
+                        </div>
                         <button type="submit" class="form-control btn btn-primary">
                             {{ __('Register') }}
                         </button>
 
                     </form>
-                    
+
                 </div>
             </div>
         </div>
